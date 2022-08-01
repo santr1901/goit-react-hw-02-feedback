@@ -3,12 +3,9 @@ import React, { Component } from 'react';
 import Statistics from 'components/Statistics/Statistics';
 import Section from 'components/Section/Section';
 import FeedbackOptions from 'components/Feedbackoptions/FeedbackOptions ';
+import Notification from 'components/Notification/Notification';
 
 class App extends Component {
-  static defaultProps = {
-    positivePercentage: 0,
-  };
-
   state = {
     good: 0,
     neutral: 0,
@@ -41,30 +38,31 @@ class App extends Component {
   countPositiveFeedbackPercentage = () => {
     const total = this.state.good + this.state.neutral + this.state.bad;
     let percentage = (this.state.good * 100) / total;
-    return percentage;
+    return Math.round(percentage);
   };
 
   render() {
     return (
       <div>
-        <h2>Please leave feedback</h2>
-        <button type="button" onClick={this.addGood}>
-          Good
-        </button>
-        <button type="button" onClick={this.addNeutral}>
-          Neutral
-        </button>
-        <button type="button" onClick={this.addBad}>
-          Bad
-        </button>
-
-        <Statistics
-          good={this.state.good}
-          neutral={this.state.neutral}
-          bad={this.state.bad}
-          total={this.countTotalFeedback}
-          positivePercentage={this.countPositiveFeedbackPercentage}
-        />
+        <Section title="Please leave feedback">
+          <FeedbackOptions
+            options={[this.addGood, this.addNeutral, this.addBad]}
+            // onLeaveFeedback={}
+          />
+        </Section>
+        <Section title={'Statistics'}>
+          {this.countTotalFeedback() > 0 ? (
+            <Statistics
+              good={this.state.good}
+              neutral={this.state.neutral}
+              bad={this.state.bad}
+              total={this.countTotalFeedback}
+              positivePercentage={this.countPositiveFeedbackPercentage}
+            />
+          ) : (
+            <Notification message={'There is no feedback'} />
+          )}
+        </Section>
       </div>
     );
   }

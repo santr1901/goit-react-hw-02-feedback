@@ -1,6 +1,7 @@
 import React from 'react';
 
 const Statistic = ({ good, neutral, bad, total, positivePercentage }) => {
+  console.log(total());
   return (
     <div>
       <ul>
@@ -8,7 +9,10 @@ const Statistic = ({ good, neutral, bad, total, positivePercentage }) => {
         <li>Neutral: {neutral}</li>
         <li>Bad: {bad}</li>
         <li>Total: {total()}</li>
-        <li>Positive feedback: {positivePercentage()}%</li>
+        <li>
+          Positive feedback: {positivePercentage() ? positivePercentage() : '0'}
+          %
+        </li>
       </ul>
     </div>
   );
