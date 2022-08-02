@@ -14,38 +14,20 @@ class App extends Component {
 
   leaveFeedback = event => {
     const name = event.target.name;
-    console.log(name);
-    this.setState(prevState => console.log(prevState));
+    if (name === 'good') {
+      this.setState(prevState => ({
+        good: prevState.good + 1,
+      }));
+    } else if (name === 'neutral') {
+      this.setState(prevState => ({
+        neutral: prevState.neutral + 1,
+      }));
+    } else if (name === 'bad') {
+      this.setState(prevState => ({
+        bad: prevState.bad + 1,
+      }));
+    }
   };
-
-  addGood = () => {
-    this.setState(prevState => ({
-      good: prevState.good + 1,
-    }));
-  };
-
-  addNeutral = () => {
-    this.setState(prevState => ({
-      neutral: prevState.neutral + 1,
-    }));
-  };
-
-  addBad = () => {
-    this.setState(prevState => ({
-      bad: prevState.bad + 1,
-    }));
-  };
-
-  // countTotalFeedback = () => {
-  //   const total = this.state.good + this.state.neutral + this.state.bad;
-  //   return total;
-  // };
-
-  // countPositiveFeedbackPercentage = () => {
-  //   const total = this.state.good + this.state.neutral + this.state.bad;
-  //   let percentage = (this.state.good * 100) / total;
-  //   return Math.round(percentage);
-  // };
 
   render() {
     const { good, neutral, bad } = this.state;

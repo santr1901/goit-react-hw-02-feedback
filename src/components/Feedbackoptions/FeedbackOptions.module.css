@@ -1,0 +1,16 @@
+.option_list {
+  display: flex;
+  flex-direction: row;
+  list-style: none;
+}
+
+.list_item {
+  margin-left: 5px;
+}
+
+.item_btn {
+  width: 70px;
+  padding: 3px;
+  border-radius: 5px;
+  background-color: transparent;
+}
